@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista</title>
+</head>
+<body>
+
+    <h1>Lista de Usuários</h1>
+
+    {% if lista %}
+        <ul>
+            {% for nome in lista %}
+                <li>
+                    {{ nome }}
+
+                    <!-- Botão de excluir -->
+                    <form action="/excluir" method="post" style="display:inline;">
+                        <input type="hidden" name="nome" value="{{ nome }}">
+                        <button type="submit">Excluir</button>
+                    </form>
+
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum usuário cadastrado.</p>
+    {% endif %}
+
+    <hr>
+
+    <a href="/">Voltar para Home</a>
+
+</body>
+</html>
