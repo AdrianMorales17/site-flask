@@ -1,10 +1,10 @@
 # Importa o flask 
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-name = []
+name = [ ]
 
 dicionario = {}
 
@@ -22,47 +22,75 @@ def home():
 
     return render_template('index.html')
 
+@app.route('/lista')
+def lista():
+    return render_template('lista.html', lista=name)
+
+@app.route('/dicionario')
+def diciona():
+    return render_template('dicionario.html', dados=dicionario)
+
+@app.route('/editar')
+def editar():
+    return render_template('editar.html')
+
 # Editar o filme no dicionario
 
-@app.route('/editar_filme.html', methods=["GET","POST"])
+@app.route('/editar_filme', methods=["GET","POST"])
 def altera_filme():
     if request.method == "POST":
+
+        if not dicionario:
+            return redirect(url_for('diciona'))
+
         nome = request.form.get('nome')
         filme_novo = request.form.get('filme_novo')
 
-        if nome in dicionario:
-            dicionario[nome] = filme_novo
+        if nome not in dicionario:
+            return redirect(url_for('diciona'))
 
-            return redirect('dicionario.html')
-        
-    return render_template('/editar_filme.html')
+        dicionario[nome] = filme_novo
+
+        return redirect(url_for('diciona'))
+
+    return render_template('editar_filme.html')
 
 # Edita o nome na lista/dicionario
 
 @app.route('/editar_nome', methods=["GET","POST"])
 def altera_nome():
     if request.method == "POST":
-        nome_antigo = request.form.get('nome_antigo')
-        nome_novo = request.form.get('nome_novo')
 
-        editar(nome_antigo, nome_novo) 
-            
-        return redirect('dicionario.html')
-    
-    return render_template('/editar_nome.html')
-    
-# Exclui os itens da lista/dicionario
+        if not name:
+            return redirect(url_for('diciona'))
+        else:
+            nome_antigo = request.form.get('nome_antigo')
+            nome_novo = request.form.get('nome_novo')
 
-@app.route('/excluir.html', methods=["GET", "POST"])
+            if nome_antigo not in name:
+                return redirect(url_for('lista'))
+
+            editar(nome_antigo, nome_novo) 
+                
+            return redirect(url_for('diciona'))
+    
+    return render_template('editar_nome.html')
+    
+# Exclui os itens da lista/dicionario quando é excluido pela lista
+
+@app.route('/excluir', methods=["GET", "POST"])
 def exclui():
-    if request.method == "POST":
-        nome = request.form.get('nome')
+    nome = request.form.get('nome')
+    origem = request.form.get('origem')
 
-        excluir(nome)
+    excluir(nome)
 
-        return redirect('lista.html')
+    if origem == "dicionario":
+        return redirect(url_for('diciona'))
+    elif origem == "lista": 
+        return redirect(url_for('lista'))
     
-    return render_template('')
+
 
 # Cria as funções de tratamento de dados
 

@@ -1,0 +1,118 @@
+/* Define o body dos sites */
+body {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    font-family: Arial, sans-serif;
+}
+
+/* Define as caracteristicas da navbar */
+.navbar {
+    background-color: #020617 !important;
+    border-bottom: 1px solid #1e293b;
+}
+
+.navbar .nav-link {
+    color: #cbd5f5 !important;
+    transition: 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #38bdf8 !important;
+}
+
+.navbar-brand {
+    color: #38bdf8 !important;
+}
+
+/* Deixa o card de acordo com o tema escuro */
+.card {
+    background-color: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 12px;
+    color: #e2e8f0;
+}
+
+.card h3 {
+    color: #38bdf8;
+}
+
+/* Modifica os formularios contidos no projeto */
+.form-label {
+    color: #cbd5f5;
+}
+
+.form-control {
+    background-color: #0f172a;
+    border: 1px solid #1e293b;
+    color: #e2e8f0;
+}
+
+.form-control:focus {
+    background-color: #0f172a;
+    border-color: #38bdf8;
+    color: #e2e8f0;
+    box-shadow: none;
+}
+
+::placeholder {
+    color: #64748b;
+}
+
+/* Modifica os botões */
+.btn-primary {
+    background-color: #38bdf8;
+    border-radius: 10px;
+    transition: 0.3s;
+
+}
+
+.btn-primary:hover {
+    background-color: #0ea5e9;
+}
+
+/* Modifica os containers */
+.center-container {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p, li {
+    color: #e2e8f0;
+}
+
+input{
+    border-radius: 10px;
+}
+
+/* Padroniza o fundo das lista */
+.list-group-item {
+    background-color: #020617;
+    border: 1px solid #1e293b;
+    color: #e2e8f0;
+}
+
+/* Padroniza os fundos e caracteristicas das tabelas */
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    color: #e2e8f0;
+}
+
+.table-custom th {
+    background-color: #020617;
+    border-bottom: 2px solid #1e293b;
+    padding: 10px;
+    text-align: left;
+}
+
+.table-custom td {
+    background-color: #020617;
+    border-bottom: 1px solid #1e293b;
+    padding: 10px;
+}
+
+.table-custom tbody tr:hover {
+    background-color: #1e293b;
+}
